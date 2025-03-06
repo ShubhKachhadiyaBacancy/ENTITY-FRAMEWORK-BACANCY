@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAY1.Migrations
 {
     [DbContext(typeof(EFCoreDataContext))]
-    [Migration("20250306072649_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250306100148_InitialCreateUsingDIScopes")]
+    partial class InitialCreateUsingDIScopes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace DAY1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("students");
+                    b.ToTable("studentsUsingDIScopes");
                 });
 #pragma warning restore 612, 618
         }

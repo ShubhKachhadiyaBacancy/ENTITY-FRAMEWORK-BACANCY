@@ -39,7 +39,7 @@ namespace DAY1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("students");
+                    b.ToTable("studentsUsingDIScopes");
                 });
 #pragma warning restore 612, 618
         }

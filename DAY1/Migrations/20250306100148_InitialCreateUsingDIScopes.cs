@@ -5,13 +5,13 @@
 namespace DAY1.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialCreateUsingDIScopes : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "students",
+                name: "studentsUsingDIScopes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -21,7 +21,7 @@ namespace DAY1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_students", x => x.Id);
+                    table.PrimaryKey("PK_studentsUsingDIScopes", x => x.Id);
                 });
         }
 
@@ -29,7 +29,7 @@ namespace DAY1.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "students");
+                name: "studentsUsingDIScopes");
         }
     }
 }

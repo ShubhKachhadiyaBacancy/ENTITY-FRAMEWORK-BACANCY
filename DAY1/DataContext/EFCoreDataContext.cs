@@ -9,6 +9,6 @@ namespace DAY1.DataContext
         {
         }
 
-        public DbSet<Student> students { get; set; }
+        public DbSet<Student> studentsUsingDIScopes { get; set; }
     }
 }
