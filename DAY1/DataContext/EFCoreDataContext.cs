@@ -5,6 +5,11 @@ namespace DAY1.DataContext
 {
     public class EFCoreDataContext :DbContext
     {
-        public DbSet<Student> Students { get; set; }
+
+        public EFCoreDataContext(DbContextOptions<EFCoreDataContext> options) : base(options) 
+        {
+
+        }
+        public DbSet<Student> StudentsUsingEnvironmentString { get; set; }    
     }
 }

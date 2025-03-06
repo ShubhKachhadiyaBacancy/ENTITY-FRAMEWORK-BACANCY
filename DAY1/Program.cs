@@ -1,3 +1,6 @@
+using DAY1.DataContext;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,9 +10,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<EFCoreDataContext>(options =>
+string environment = builder.Environment.EnvironmentName;
+string connectionString = environment switch
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    "Development" => builder.Configuration.GetConnectionString("Development"),
+    "Production" => builder.Configuration.GetConnectionString("Production")
+};
+
+builder.Services.AddDbContext<EFCoreDataContext>(options => {
+    options.UseSqlServer(connectionString);
 });
 
 var app = builder.Build();
