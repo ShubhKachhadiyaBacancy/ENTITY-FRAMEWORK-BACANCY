@@ -29,6 +29,8 @@ namespace DAY2.DataContext
                 .HasOne(op => op.product)
                 .WithMany(p => p.orderProducts)
                 .HasForeignKey(op => op.ProductId);
+
+            modelBuilder.Entity<Customer>().HasQueryFilter(c => !c.IsDeleted );
         }
     }
 }

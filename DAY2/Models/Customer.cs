@@ -17,6 +17,7 @@ namespace DAY2.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        public bool IsDeleted { get; set; } = false;
         //Navigation Property
         public List<Order> orders { get; set; } = new List<Order>();
     }

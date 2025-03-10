@@ -15,7 +15,7 @@ namespace DAY2.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("GetCustomers")]
         public IActionResult GetCustomers()
         {
             if(_context.customers.ToList().Count == 0)
@@ -30,7 +30,7 @@ namespace DAY2.Controllers
             return Ok(customers);
         }
 
-        [HttpPost]
+        [HttpPost("AddCustomer")]
         public IActionResult CreateCustomer([FromBody] Customer customer)
         {
             _context.customers.Add(customer);
@@ -38,8 +38,8 @@ namespace DAY2.Controllers
             return CreatedAtAction(nameof(GetCustomers), new { id = customer.CustomerId }, customer);
         }
 
-        [HttpDelete]
-        public IActionResult DeleteCustomer([FromBody] Customer customer)
+        [HttpDelete("HardDeleteCustomer")]
+        public IActionResult HardDeleteCustomer([FromBody] Customer customer)
         {
             var c = _context.customers.Find(customer.CustomerId);
             if(c == null)
@@ -49,7 +49,21 @@ namespace DAY2.Controllers
 
             _context.customers.Remove(c);
             _context.SaveChanges();
-            return Ok("CUSTOMER DELETED");
+            return Ok("CUSTOMER HARD DELETED");
+        }
+
+        [HttpDelete("SoftDeleteCustomer")]
+        public IActionResult SoftDeleteCustomer([FromBody] Customer customer)
+        {
+            var c = _context.customers.Find(customer.CustomerId);
+            if (c == null)
+            {
+                return BadRequest("CUSTOMER NOT FOUND");
+            }
+
+            c.IsDeleted = true;
+            _context.SaveChanges();
+            return Ok("CUSTOMER SOFT DELETED");
         }
     }
 }
